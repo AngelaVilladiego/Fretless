@@ -412,7 +412,7 @@ class _WarmUpPageState extends State<WarmUpPage> {
   }
 
   void _stopSound() async {
-    ck on tif (_isPlaying)
+    if (_isPlaying)
       player.stop();
   }
 
