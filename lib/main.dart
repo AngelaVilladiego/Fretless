@@ -326,7 +326,7 @@ class _LevelSelectionPageState extends State<LevelSelectionPage> {
                         onThinButtonPressed: () {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => WarmUpPage(warmUp: 'd_minor_pentatonic', title: 'A Minor Pentatonic', bpm:65))
+                              MaterialPageRoute(builder: (context) => WarmUpPage(warmUp: 'd_minor_pentatonic', title: 'D Minor Pentatonic', bpm:65))
                           );
                         }
                     ),
