@@ -394,6 +394,7 @@ class _WarmUpPageState extends State<WarmUpPage> {
     super.initState();
   }
 
+
   void _playSound() async {
     log("In play sound");
     if (_isPlaying)
@@ -411,13 +412,21 @@ class _WarmUpPageState extends State<WarmUpPage> {
   }
 
   void _stopSound() async {
-    if (_isPlaying)
+    ck on tif (_isPlaying)
       player.stop();
+  }
+
+  Future<bool> _onWillPop() async {
+
+    _stopSound();
+
+    return Future.value(true);
+
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new WillPopScope(child: Scaffold(
       body: Column(
         children: <Widget> [
           TopNav(
@@ -453,13 +462,13 @@ class _WarmUpPageState extends State<WarmUpPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       IconButton(
-                          padding: EdgeInsets.all(0),
-                          iconSize: 40,
-                          icon: Icon(
-                              _isPlaying? Icons.stop_circle_outlined : Icons.play_circle_outline
-                          ),
-                          onPressed: _playSound,
+                        padding: EdgeInsets.all(0),
+                        iconSize: 40,
+                        icon: Icon(
+                            _isPlaying? Icons.stop_circle_outlined : Icons.play_circle_outline
                         ),
+                        onPressed: _playSound,
+                      ),
                       Text(
                         'Played at ' + widget.bpm.toString() + 'bpm',
                         style: TextStyle(
@@ -500,7 +509,9 @@ class _WarmUpPageState extends State<WarmUpPage> {
           )
         ],
       ),
-    );
+    ),
+        onWillPop: _onWillPop);
+
   }
 }
 
